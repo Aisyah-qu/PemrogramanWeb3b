@@ -1,135 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Berita Yudharta</title>
-    <style>
-        /* Reset Global Modern */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+const transaksi = [
+    { id: 1, barang: "Beras", harga: 15000, qty: 2, kategori: "Makanan" },
+    { id: 2, barang: "Gula", harga: 14000, qty: 1, kategori: "Makanan" },
+    { id: 3, barang: "Mouse", harga: 75000, qty: 1, kategori: "Elektronik" },
+    { id: 4, barang: "Keyboard", harga: 120000, qty: 1, kategori: "Elektronik" },
+    { id: 5, barang: "Sabun", harga: 5000, qty: 3, kategori: "Kebutuhan" },
+    { id: 6, barang: "Minyak Goreng", harga: 18000, qty: 2, kategori: "Makanan" }
+];
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #1e293b;
-  background-color: #f8fafc;
-}
+// 1. Filter untuk menyaring kategori tertentu
+const kategoriElektronik = transaksi.filter(
+    ({ kategori }) => kategori === "Elektronik"
+);
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #2b3fb1;
-  border-bottom: 1px solid #e2e8f0;
-}
+console.log("=== TRANSAKSI KATEGORI ELEKTRONIK ===");
+console.log(kategoriElektronik);
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
+// 2. Map untuk menghitung subtotal setiap barang
+const daftarSubtotal = transaksi.map(
+    ({ id, barang, harga, qty, kategori }) => ({
+        id,
+        barang,
+        harga,
+        qty,
+        kategori,
+        subtotal: harga * qty
+    })
+);
 
-.nav-links a {
-  text-decoration: none;
-  color: #475569;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
+console.log("\n=== SUBTOTAL SETIAP BARANG ===");
+daftarSubtotal.forEach(({ barang, subtotal }) => {
+    console.log(`${barang}: Rp${subtotal.toLocaleString("id-ID")}`);
+});
 
-.nav-links a:hover {
-  color: #2563eb;
-}
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+// 3. Reduce untuk menghitung total keseluruhan
+const totalKeseluruhan = daftarSubtotal.reduce(
+    (total, { subtotal }) => total + subtotal,
+    0
+);
 
-.card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .navbar { flex-direction: column; gap: 1rem; }
-  .card-grid { padding: 1rem; gap: 1rem; }
-}
-    </style>
-</head>
-<body>
-
-    <header>
-        <h3>Saidati Aisyah</h3>
-
-        <nav>
-            <ul>
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#berita">Berita</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main id="beranda">
-        <article id="berita">
-            <h2>Mahasiswa IT Semester 3</h2>
-
-            <p>
-                Mahasiswa Teknik Informatika yang terus belajar
-                mengembangkan teknologi web dan aplikasi.
-            </p>
-        </article>
-
-        <section>
-                        <div class="card-grid">
-                <div class="card">
-                    <h3>Belajar HTML Semantik</h3>
-                    <p>Memakai tag header, main, article, dan footer supaya struktur halaman lebih jelas.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Dasar Flexbox</h3>
-                    <p>Mengatur susunan elemen secara horizontal, seperti pada navbar dan footer.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Dasar CSS Grid</h3>
-                    <p>Membuat tata letak kartu yang rapi dalam baris dan kolom.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Tampilan Responsif</h3>
-                    <p>Menguji halaman di ukuran mobile, tablet, dan desktop lewat DevTools.</p>
-                </div>
-            </div>
-            <h2>Tata Cara Memasak Nasi</h2>
-
-            <ol>
-                <li>Persiapan Beras</li>
-                <li>Dicuci</li>
-                <li>Dimasak</li>
-                <li>Matang</li>
-            </ol>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy 2026 Teknik Informatika</p>
-    </footer>
-
-</body>
-</html>
+console.log("\n=== TOTAL KESELURUHAN ===");
+console.log(`Total belanja: Rp${totalKeseluruhan.toLocaleString("id-ID")}`);

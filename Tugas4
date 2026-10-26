@@ -1,0 +1,42 @@
+const transaksi = [
+    { id: 1, barang: "Beras", harga: 15000, qty: 2, kategori: "Makanan" },
+    { id: 2, barang: "Gula", harga: 14000, qty: 1, kategori: "Makanan" },
+    { id: 3, barang: "Mouse", harga: 75000, qty: 1, kategori: "Elektronik" },
+    { id: 4, barang: "Keyboard", harga: 120000, qty: 1, kategori: "Elektronik" },
+    { id: 5, barang: "Sabun", harga: 5000, qty: 3, kategori: "Kebutuhan" },
+    { id: 6, barang: "Minyak Goreng", harga: 18000, qty: 2, kategori: "Makanan" }
+];
+
+// 1. Filter untuk menyaring kategori tertentu
+const kategoriElektronik = transaksi.filter(
+    ({ kategori }) => kategori === "Elektronik"
+);
+
+console.log("=== TRANSAKSI KATEGORI ELEKTRONIK ===");
+console.log(kategoriElektronik);
+
+// 2. Map untuk menghitung subtotal setiap barang
+const daftarSubtotal = transaksi.map(
+    ({ id, barang, harga, qty, kategori }) => ({
+        id,
+        barang,
+        harga,
+        qty,
+        kategori,
+        subtotal: harga * qty
+    })
+);
+
+console.log("\n=== SUBTOTAL SETIAP BARANG ===");
+daftarSubtotal.forEach(({ barang, subtotal }) => {
+    console.log(`${barang}: Rp${subtotal.toLocaleString("id-ID")}`);
+});
+
+// 3. Reduce untuk menghitung total keseluruhan
+const totalKeseluruhan = daftarSubtotal.reduce(
+    (total, { subtotal }) => total + subtotal,
+    0
+);
+
+console.log("\n=== TOTAL KESELURUHAN ===");
+console.log(`Total belanja: Rp${totalKeseluruhan.toLocaleString("id-ID")}`);
