@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Berita Yudharta</title>
+    <style>
+        /* Reset Global Modern */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+  background-color: #f8fafc;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #2b3fb1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #2563eb;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; gap: 1rem; }
+  .card-grid { padding: 1rem; gap: 1rem; }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h3>Saidati Aisyah</h3>
+
+        <nav>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#berita">Berita</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="beranda">
+        <article id="berita">
+            <h2>Mahasiswa IT Semester 3</h2>
+
+            <p>
+                Mahasiswa Teknik Informatika yang terus belajar
+                mengembangkan teknologi web dan aplikasi.
+            </p>
+        </article>
+
+        <section>
+                        <div class="card-grid">
+                <div class="card">
+                    <h3>Belajar HTML Semantik</h3>
+                    <p>Memakai tag header, main, article, dan footer supaya struktur halaman lebih jelas.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Dasar Flexbox</h3>
+                    <p>Mengatur susunan elemen secara horizontal, seperti pada navbar dan footer.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Dasar CSS Grid</h3>
+                    <p>Membuat tata letak kartu yang rapi dalam baris dan kolom.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Tampilan Responsif</h3>
+                    <p>Menguji halaman di ukuran mobile, tablet, dan desktop lewat DevTools.</p>
+                </div>
+            </div>
+            <h2>Tata Cara Memasak Nasi</h2>
+
+            <ol>
+                <li>Persiapan Beras</li>
+                <li>Dicuci</li>
+                <li>Dimasak</li>
+                <li>Matang</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy 2026 Teknik Informatika</p>
+    </footer>
+
+</body>
+</html>
